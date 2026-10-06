@@ -1,0 +1,397 @@
+/* === Карточка виджета — мягкая, крупнее === */
+.widget {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.widget:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.widget__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 14px;
+}
+
+.widget__title {
+  font-size: 18px;              /* крупнее */
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.widget__actions { display: flex; gap: 4px; }
+
+.widget__icon {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--muted-2);
+  transition: .15s;
+}
+.widget__icon:hover { background: var(--card-soft); color: var(--pink); }
+
+.widget__body { padding: 0 24px 24px; min-width: 0; }
+.widget--collapsed .widget__body { display: none; }
+
+.widget__loader {
+  text-align: center;
+  color: var(--violet);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 24px;
+}
+
+/* === Profile — фиолетовый градиент === */
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: linear-gradient(135deg, var(--violet) 0%, var(--violet-lt) 100%);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 10px 28px rgba(108, 92, 231, .35);
+}
+
+.profile__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar--lg {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .22);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, .4);
+}
+
+.profile__name {
+  font-size: 19px;
+  font-weight: 900;
+  color: #fff;
+}
+.profile__hours {
+  font-size: 13px;
+  color: rgba(255, 255, 255, .8);
+  margin-top: 3px;
+  font-weight: 700;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 6px;
+  background: rgba(255, 255, 255, .16);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, .22);
+}
+.stat-box__value {
+  font-size: 17px;
+  font-weight: 900;
+  color: #fff;
+}
+.stat-box__label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, .8);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  margin-top: 3px;
+  font-weight: 800;
+}
+
+/* === Map Winrate === */
+.map-winrate { display: flex; flex-direction: column; gap: 16px; }
+
+.map-row {
+  display: grid;
+  grid-template-columns: 86px 1fr 48px 62px;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+}
+.map-row__name {
+  font-weight: 800;
+  color: var(--text);
+}
+.map-row__bar {
+  height: 12px;
+  background: var(--card-soft);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.map-row__fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width .5s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+.map-row__pct {
+  text-align: right;
+  font-weight: 900;
+  color: var(--text);
+  font-size: 15px;
+}
+.map-row__played {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+  font-weight: 700;
+}
+
+/* === Crypto === */
+.crypto { display: flex; flex-direction: column; gap: 10px; }
+.crypto-list { display: flex; flex-direction: column; gap: 10px; }
+
+.crypto-row {
+  display: grid;
+  grid-template-columns: 78px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--card-soft);
+  border-radius: 16px;
+  font-size: 15px;
+  transition: background .15s;
+}
+.crypto-row:hover { background: #eceefa; }
+
+.crypto-row__symbol {
+  font-weight: 900;
+  color: var(--violet);
+  font-size: 13px;
+  letter-spacing: .4px;
+}
+.crypto-row__price {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-weight: 800;
+  color: var(--text);
+  font-size: 15px;
+}
+.crypto-row__change {
+  font-weight: 900;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(46, 204, 113, .12);
+}
+.crypto-row__change.trend-up   { color: var(--green); background: rgba(46, 204, 113, .14); }
+.crypto-row__change.trend-down { color: var(--red);   background: rgba(255, 71, 87, .14); }
+
+/* === Weather === */
+.weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  padding: 8px 0;
+}
+.weather__main { display: flex; align-items: center; gap: 20px; }
+.weather__icon {
+  font-size: 64px;
+  filter: drop-shadow(0 8px 16px rgba(108, 92, 231, .22));
+}
+.weather__temp {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--violet);
+  letter-spacing: -1.5px;
+}
+.weather__city {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 700;
+}
+.weather__details {
+  display: flex;
+  gap: 28px;
+  margin-top: 4px;
+  padding: 12px 24px;
+  background: var(--card-soft);
+  border-radius: 999px;
+}
+.weather__detail {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* === ToDo — ФИКС кнопки, чтобы не вылезала === */
+.todo { display: flex; flex-direction: column; gap: 14px; }
+
+.todo__form {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;                /* разрешает flex-детям сжиматься */
+}
+
+.todo__input {
+  flex: 1 1 auto;
+  min-width: 0;                /* ключ: инпут может сжиматься */
+  padding: 14px 20px;
+  font: inherit;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  outline: none;
+  background: var(--card-soft);
+  color: var(--text);
+  transition: .2s;
+}
+.todo__input:focus {
+  border-color: var(--violet);
+  background: #fff;
+  box-shadow: 0 0 0 5px rgba(108, 92, 231, .12);
+}
+.todo__input::placeholder { color: var(--muted-2); font-weight: 700; }
+
+/* Кнопка внутри ToDo — фиксированная ширина, не вылезает */
+.todo__form .btn {
+  flex: 0 0 auto;              /* ключ: кнопка не растягивается и не сжимается */
+  padding: 14px 22px;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.todo__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: var(--card-soft);
+  transition: background .15s;
+}
+.todo__item:hover { background: #eceefa; }
+
+.todo__label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+.todo__label input[type="checkbox"] {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid var(--muted-2);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: .2s;
+  flex-shrink: 0;
+}
+.todo__label input[type="checkbox"]:checked {
+  background: var(--violet);
+  border-color: var(--violet);
+}
+.todo__label input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo__text {
+  word-break: break-word;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.todo__item--done .todo__text {
+  text-decoration: line-through;
+  color: var(--muted-2);
+}
+
+.todo__empty {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted-2);
+  padding: 14px 0;
+  font-weight: 700;
+}
+
+/* === Quote === */
+.quote { display: flex; flex-direction: column; gap: 18px; }
+
+.quote__block {
+  padding: 22px;
+  background: linear-gradient(135deg, #fff 0%, var(--card-soft) 100%);
+  border-left: 5px solid var(--pink);
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+.quote__text {
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.quote__author {
+  font-size: 14px;
+  color: var(--pink);
+  text-align: right;
+  font-weight: 900;
+}
+
+/* Кнопка «Обновить» в цитате — на всю ширину, аккуратно */
+.quote .btn {
+  align-self: stretch;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 900;
+  padding: 14px;
+}

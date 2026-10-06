@@ -1,0 +1,216 @@
+/* === Сброс и палитра — милый стиль === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Фон и панели */
+  --bg:         #d6d9ef;
+  --surface:    #eef0fa;
+  --card:       #ffffff;
+  --card-soft:  #f5f6fc;
+
+  /* Текст */
+  --text:       #2a2a4a;
+  --muted:      #8a8fb3;
+  --muted-2:    #b6bad4;
+
+  /* Акценты */
+  --violet:     #6c5ce7;
+  --violet-dk:  #5a4bd1;
+  --violet-lt:  #8b7ff0;
+  --pink:       #ff6b9d;
+  --pink-lt:    #ffb1cd;
+  --green:      #2ecc71;
+  --yellow:     #f5b70a;
+  --red:        #ff4757;
+
+  --border:     #e6e8f4;
+
+  --radius-xl:  36px;
+  --radius:     24px;
+  --radius-sm:  16px;
+
+  --shadow-sm:  0 2px 12px rgba(108, 92, 231, .10);
+  --shadow:     0 8px 28px rgba(108, 92, 231, .14);
+  --shadow-lg:  0 16px 48px rgba(108, 92, 231, .20);
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;              /* базовый крупнее */
+  font-weight: 600;             /* Nunito любит полужирный */
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.55;
+  padding: 32px 20px;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0.1px;
+}
+
+/* === Топбар — шире и мягче === */
+.topbar {
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1680px, calc(100% - 40px));    /* ШИРЕ */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 32px;
+  background: var(--surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: var(--shadow);
+  z-index: 10;
+}
+
+.topbar h1 {
+  font-size: 24px;              /* крупнее */
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -0.4px;
+}
+
+.topbar__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* === Кнопки — капсулы, крупнее === */
+.btn {
+  font: inherit;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--violet);
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn--primary {
+  background: var(--violet);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(108, 92, 231, .35);
+}
+.btn--primary:hover {
+  background: var(--violet-dk);
+  box-shadow: 0 12px 28px rgba(108, 92, 231, .45);
+}
+
+/* === Основная панель — ШИРЕ, крупнее отступы === */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));   /* карточки крупнее */
+  gap: 24px;
+  width: min(1680px, calc(100% - 40px));    /* ШИРЕ */
+  margin: 0 auto;
+  padding: 130px 40px 40px;
+  background: var(--surface);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  box-shadow: var(--shadow);
+  min-height: calc(100vh - 64px);
+  align-items: start;
+}
+
+/* === Меню «Добавить виджет» === */
+.add-menu { position: relative; }
+
+.add-menu__caret {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform .2s;
+}
+.add-menu:has(.add-menu__list:not([hidden])) .add-menu__caret {
+  transform: rotate(180deg);
+}
+
+.add-menu__list {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 340px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 10px;
+  list-style: none;
+  z-index: 30;
+  animation: menuIn .2s ease-out;
+}
+
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-10px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.add-menu__item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-family: "Nunito", sans-serif;
+  text-align: left;
+  transition: background .15s;
+}
+.add-menu__item:hover { background: var(--card-soft); }
+
+.add-menu__icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: var(--card-soft);
+  border-radius: 14px;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+.add-menu__item:hover .add-menu__icon { background: var(--violet); color: #fff; }
+
+.add-menu__text { display: flex; flex-direction: column; }
+.add-menu__title { font-size: 16px; font-weight: 800; color: var(--text); }
+.add-menu__desc  { font-size: 13px; color: var(--muted); margin-top: 2px; font-weight: 600; }
+
+/* === Адаптив === */
+@media (max-width: 640px) {
+  body { padding: 16px 8px; font-size: 15px; }
+  .topbar {
+    top: 16px;
+    width: calc(100% - 16px);
+    padding: 16px 20px;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .topbar h1 { font-size: 18px; }
+  .btn { padding: 10px 18px; font-size: 14px; }
+  .dashboard {
+    width: calc(100% - 16px);
+    padding: 110px 16px 20px;
+    border-radius: 0 0 var(--radius) var(--radius);
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS2 Stats Dashboard</title>
+  <link rel="icon" href="data:,">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Информашка по лабораторной №2</h1>
+
+    <div class="topbar__actions">
+      <div class="add-menu">
+        <button class="btn btn--primary" id="add-toggle" aria-haspopup="true" aria-expanded="false">
+          ➕ Добавить виджет <span class="add-menu__caret">▾</span>
+        </button>
+
+        <ul class="add-menu__list" id="add-list" role="menu" hidden>
+          <li role="none">
+            <button class="add-menu__item" role="menuitem" data-add="profile">
+              <span class="add-menu__icon">🏆</span>
+              <span class="add-menu__text">
+                <span class="add-menu__title">Мой профиль CS2</span>
+                <span class="add-menu__desc">Ранг, K/D, HS%, winrate</span>
+              </span>
+            </button>
+          </li>
+          <li role="none">
+            <button class="add-menu__item" role="menuitem" data-add="maps">
+              <span class="add-menu__icon">⚡</span>
+              <span class="add-menu__text">
+                <span class="add-menu__title">Винрейт по картам</span>
+                <span class="add-menu__desc">Mirage, Inferno, Nuke, …</span>
+              </span>
+            </button>
+          </li>
+          <li role="none">
+            <button class="add-menu__item" role="menuitem" data-add="crypto">
+              <span class="add-menu__icon">💱</span>
+              <span class="add-menu__text">
+                <span class="add-menu__title">Курсы криптовалют</span>
+                <span class="add-menu__desc">CoinGecko API — BTC, ETH, SOL</span>
+              </span>
+            </button>
+          </li>
+          <li role="none">
+            <button class="add-menu__item" role="menuitem" data-add="weather">
+              <span class="add-menu__icon">☁️</span>
+              <span class="add-menu__text">
+                <span class="add-menu__title">Погода</span>
+                <span class="add-menu__desc">Open-Meteo API — Москва</span>
+              </span>
+            </button>
+          </li>
+          <li role="none">
+            <button class="add-menu__item" role="menuitem" data-add="todo">
+              <span class="add-menu__icon">📝</span>
+              <span class="add-menu__text">
+                <span class="add-menu__title">Чеклист игрока</span>
+                <span class="add-menu__desc">Список задач с отметкой</span>
+              </span>
+            </button>
+          </li>
+          <li role="none">
+            <button class="add-menu__item" role="menuitem" data-add="quote">
+              <span class="add-menu__icon">💬</span>
+              <span class="add-menu__text">
+                <span class="add-menu__title">Цитата дня</span>
+                <span class="add-menu__desc">Случайная мотивация</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <button class="btn" id="clear-all">🗑 Очистить всё</button>
+    </div>
+  </header>
+
+  <main id="dashboard" class="dashboard" aria-live="polite"></main>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
